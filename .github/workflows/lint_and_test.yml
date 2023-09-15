@@ -16,11 +16,6 @@ jobs:
               with:
                   python-version: '3.10'
 
-            - name: Activate virtual env
-              run: |
-                   make setup
-                   source .mcapi/bin/activate
-
             - name: Install dependencies
               run: make install
 

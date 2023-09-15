@@ -1,7 +1,4 @@
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -54,5 +51,5 @@ jobs:
           push: true
           secrets: |
             prod=test
-          tags: lmcconnell1665/stp-billing-app:beta
+          tags: lmcconnell1665/mc-api:beta
             

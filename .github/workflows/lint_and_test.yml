@@ -2,32 +2,31 @@ on:
   pull_request:
     branches:
       - main
+
+name: 'Build and Test'
 jobs:
     test:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+ 
             - name: Set up Python 3.10
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4.7.0
               with:
-                  python-version: 3.10
-
-            - name: Activate virtual env
-              run: |
-                   make setup
-                   source ~/.mcapi/bin/activate
+                  python-version: '3.10'
 
             - name: Install dependencies
               run: make install
 
             - name: Lint with pylint
-              run: pylint --disable=R,C mcapi
+              run: make lint
 
             - name: Test with pytest
               run: make test
 
     build:
       runs-on: ubuntu-latest
+      needs: test
       steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image

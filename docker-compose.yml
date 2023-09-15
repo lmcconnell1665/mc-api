@@ -1,0 +1,7 @@
+version: '3'
+services:
+  webapp:
+    image: mcapi:latest
+    restart: unless-stopped  # This line specifies the restart policy
+    ports:
+      - "80:80"

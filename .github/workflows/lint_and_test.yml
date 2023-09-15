@@ -14,7 +14,7 @@ jobs:
             - name: Set up Python 3.10
               uses: actions/setup-python@v4.7.0
               with:
-                  python-version: 3.10
+                  python-version: '3.10'
 
             - name: Activate virtual env
               run: |
@@ -32,6 +32,7 @@ jobs:
 
     build:
       runs-on: ubuntu-latest
+      needs: test
       steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image

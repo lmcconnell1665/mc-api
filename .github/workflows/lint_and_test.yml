@@ -19,7 +19,7 @@ jobs:
             - name: Activate virtual env
               run: |
                    make setup
-                   source ~/.mcapi/bin/activate
+                   source .mcapi/bin/activate
 
             - name: Install dependencies
               run: make install

@@ -9,7 +9,7 @@ class BrandBase(BaseModel):
 
 class BrandCreate(BrandBase):
     """Model for creating a new brand of coffee"""
-    pass
+    pass  # pylint: disable=unnecessary-pass
 
 
 class Brand(BrandBase):

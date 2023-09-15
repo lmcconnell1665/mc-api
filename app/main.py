@@ -3,13 +3,13 @@ mc-api
 """
 
 from typing import Annotated
-from fastapi import Body, FastAPI
-from pydantic import BaseModel
+from fastapi import Body, FastAPI, HTTPException, Depends
 
-from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
-import app.crud as crud, app.db_models as db_models, app.schemas as schemas
+import app.crud as crud
+import app.db_models as db_models
+import app.schemas as schemas
 from app.database import SessionLocal, engine
 
 db_models.Base.metadata.create_all(bind=engine)
@@ -51,8 +51,9 @@ def read_brand(brand_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Brand not found")
     return db_brand
 
-
+# pylint: disable=unused-argument
 @app.post("/coffee/adjust_inventory")
-async def adjust_inventory(brand_id:  Annotated[int, Body()], inventory_adjustment:  Annotated[int, Body()]):
+async def adjust_inventory(brand_id:  Annotated[int, Body()]
+                           , inventory_adjustment:  Annotated[int, Body()]):
     """Adjusts the inventory for the specified brand of coffee"""
     return HTTPException(status_code=501, detail="Not implemented")

@@ -7,9 +7,12 @@ install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 
+lint:
+	pylint --disable=R,C,W1203,W1202 app/*.py
+
 test:
-	rm sql_app.db
-	python -m pytest -vv
+	rm -f sql_app.db
+	coverage run -m pytest -vv
 
 spinup:
 	uvicorn main:app --reload

@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 # if the env variable prod is set, use the ms sql server, else use the sqllite db
 if os.getenv("prod"):
-    SQLALCHEMY_DATABASE_URL = f"postgresql://postgres:C0ffeeShop&@{os.getenv(prod)}/CoffeeShop"
+    SQLALCHEMY_DATABASE_URL = f"postgresql://postgres:C0ffeeShop&@{os.getenv('prod')}/CoffeeShop"
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 else:

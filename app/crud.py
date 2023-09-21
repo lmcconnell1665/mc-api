@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-import db_models as db_models, schemas as schemas
+import db_models as db_models, schemas as schemas  # pylint: disable=import-error
 
 
 def get_brand(db: Session, brand_id: int):

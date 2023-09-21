@@ -7,10 +7,12 @@ from fastapi import Body, FastAPI, HTTPException, Depends
 
 from sqlalchemy.orm import Session
 
-import crud
+# pylint: disable=import-error
+import crud 
 import db_models
 import schemas
 from database import SessionLocal, engine
+# pylint: enable=import-error
 
 db_models.Base.metadata.create_all(bind=engine)
 

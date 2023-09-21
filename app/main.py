@@ -7,15 +7,27 @@ from fastapi import Body, FastAPI, HTTPException, Depends
 
 from sqlalchemy.orm import Session
 
+# pylint: disable=import-error
 import app.crud as crud
 import app.db_models as db_models
 import app.schemas as schemas
 from app.database import SessionLocal, engine
+# pylint: enable=import-error
 
 db_models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+from datetime import datetime
+from pydantic import BaseModel
+from socket import gethostbyname, gethostname
+
+class APIServiceStatus(BaseModel):
+    """Model for API service status data"""
+    service: str = "mc-api"
+    ip_address: str
+    datetime: str
+    status: str
 
 # Dependency
 def get_db():
@@ -25,6 +37,12 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.get("/")
+async def root():
+    ip_address = gethostbyname(gethostname())
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return APIServiceStatus(ip_address=ip_address, datetime=current_time, status="online")
 
 
 @app.post("/coffee/brand", response_model=schemas.Brand)

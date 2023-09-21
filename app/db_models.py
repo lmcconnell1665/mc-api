@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Float
 # from sqlalchemy.orm import relationship
 
-from app.database import Base
+from app.database import Base  # pylint: disable=import-error
 
 
 class Brand(Base):

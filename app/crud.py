@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-import app.db_models as db_models, app.schemas as schemas
+import db_models as db_models, schemas as schemas
 
 
 def get_brand(db: Session, brand_id: int):
